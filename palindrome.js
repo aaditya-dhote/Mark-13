@@ -1,3 +1,4 @@
+
 const dates = document.querySelector("#birth-date");
 const outputBox = document.querySelector("#output");
 const chkButton = document.querySelector("#check-button");
