@@ -28,9 +28,9 @@ function isPalindrome(str) {
 // console.log(isPalindrome("racecar"))
 
 var date = {
-  day: 25,
-  month: 2,
-  year: 2020,
+  day: 21,
+  month: 11,
+  year: 2012,
 }
 
 
@@ -63,12 +63,14 @@ function allDateFormats(date) {
 
 function checkDatesForPalindrome(date) {
   var dateList = allDateFormats(date);
-  var palindromeList = [];
+  var palindromeList = false;
 
   for (var i = 0; i < dateList.length; i++) {
-    var result = isPalindrome(dateList[i]);
-    palindromeList.push(result);
-  }
+    if(isPalindrome(dateList[i])){
+    var palindromeList =true;
+        break;
+    
+  }}
   return palindromeList;
 }
 
@@ -134,7 +136,51 @@ function getNextDate(date) {
   }
 }
 
-// console.log(getNextDate(date))
+console.log(getNextDate(date))
+
+
+function getPreviousDate(date) {
+    var day = date.day -1;
+    var month = date.month;
+    var year = date.year;
+  
+    var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    if (month === 3) {
+      if (isLeapYear(year)) {
+        if (day < 1) {
+          day = 29;
+          month--;
+        }
+      }
+      else {
+        if (day < 1) {
+          day = 28;
+          month--;
+        }
+      }
+    }
+    else {
+      if (day < 1 ) {
+        day = daysInMonth[month - 2];
+        month--;
+      }
+      if (month <1) {
+  day=31
+        month = 12;
+        year--;
+      }
+    }
+    
+  
+    return {
+  
+      day: day,
+      month: month,
+      year: year,
+    }
+  }
+console.log(getPreviousDate(date));
+
 
 function getNextPalindromeDate(date) {
 
@@ -145,19 +191,37 @@ function getNextPalindromeDate(date) {
     // var nextDateStr = convertDateToString(nextDate);
     var isItPalindrome = checkDatesForPalindrome(nextDate);
 
-    for (let i = 0; i < isItPalindrome.length; i++) {
-      if (isItPalindrome[i]) {
+     
+      if (isItPalindrome) {
         return [ctr, nextDate];
       }
-    }
+    
     nextDate = getNextDate(nextDate);
-
+    }
   };
-}
 
 
 
 console.log(getNextPalindromeDate(date));
+
+
+function getPreviousPalindromeDate(date){
+var previousDate = getPreviousDate(date);
+var ctr = 0;
+while(1){
+    ctr--;
+
+var isthisPalindrome = checkDatesForPalindrome(previousDate);
+if(isthisPalindrome){
+    return [ctr,previousDate];
+}
+
+previousDate=getPreviousDate(previousDate);
+
+}
+
+}; 
+console.log(getPreviousPalindromeDate(date));
 
 
 const input = document.querySelector("#inputer");
@@ -187,24 +251,33 @@ function final(){
 console.log(inputDate);
 
 if(enterDate!==""){
-  var inputPalindromeDate = checkDatesForPalindrome(inputDate);
-  console.log(inputPalindromeDate)
-  var nextPalindromeDate = getNextPalindromeDate(inputDate);
+ 
 
-  for(let i=0;i<inputPalindromeDate.length;i++){
-    // console.log(inputPalindromeDate[i])
-  if(inputPalindromeDate[i]){
-    break;
+  var nextPalindromeDate = getNextPalindromeDate(inputDate);
+  var prevPalindromeDate = getPreviousPalindromeDate(inputDate);
+
+var nextPalindromeBirthDate =nextPalindromeDate[1].day+"-"+nextPalindromeDate[1].month+"-"+nextPalindromeDate[1].year;
+var prevPalindromeBirthDate =prevPalindromeDate[1].day+"-"+prevPalindromeDate[1].month+"-"+prevPalindromeDate[1].year;
+
+
+
+  var inputPalindromeDate = checkDatesForPalindrome(inputDate);
+
+  console.log(nextPalindromeDate);
+
+  if(inputPalindromeDate===true){
+    
     result.innerText = "Yay it is a palindrome";
 
   }
-  result.innerText = "nope it is a palindrome";
-// result.innerText = "The next palindrome date is" + nextPalindromeDate[0] + " days on " + nextPalindromeDate[1];
-  
+  else(result.innerText = "Next palindrome date is after " + nextPalindromeDate[0]+" days on " +nextPalindromeBirthDate +" or previous palindrome date is before "
+  + prevPalindromeDate[0] + " days on " + prevPalindromeBirthDate
+  )
+
 };
 }
 
-}
+// }
 
 
 button.addEventListener("click",final)
