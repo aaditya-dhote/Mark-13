@@ -114,24 +114,24 @@ function getNextDate(date){
   
   
   
-  function nextPalindromeDate(date){
+//   function nextPalindromeDate(date){
    
-    var ctr = 0;  
-    var nextDate=getNextDate(date);
+//     var ctr = 0;  
+//     var nextDate=getNextDate(date);
     
   
-    while(1){
-    ctr++;
-    var dateString=getDateAsString(nextDate);    //yaha aaya hai error
-    var resultList = checkPalindrome(dateString);
+//     while(1){
+//     ctr++;
+//     var dateString=getDateAsString(nextDate);    //yaha aaya hai error
+//     var resultList = checkPalindrome(dateString);
       
-      for(let i=0; i<resultList.length;i++){
-if(resultList[i]){
-  return[ctr,nextDate];
-}
-nextDate=getNextDate(nextDate);
-      }
-  }
+//       for(let i=0; i<resultList.length;i++){
+// if(resultList[i]){
+//   return[ctr,nextDate];
+// }
+// nextDate=getNextDate(nextDate);
+//       }
+//   }
    
   
 var bdayInput = document.querySelector('#bday-input');
@@ -141,6 +141,7 @@ var resultDiv = document.querySelector('#result');
 function final(){
 
 var bdayString=bdayInput.value ;
+
 
 if(bdayString !== ''){
     var inputDate = bdayString.split('-');
@@ -156,14 +157,14 @@ var inputDate={
 };
 
     
-    var isPalindrome=checkListForPalindrome(date);
-    var nextPalindromeBday=nextPalindromeDate(date);
+    var isPalindrome=checkPalindrome(inputDate);
+    // var nextPalindromeBday=nextPalindromeDate(inputDate);
     if(isPalindrome){
-        outputBox.innerText="Yay your birthday is a palindrome";
+        resultDiv.innerText="Yay your birthday is a palindrome";
     }
-    else{
-        var [ctr,nextDate] = nextPalindromeBday;
-        outputBox.innerText='Next palindrome birthdate is ${nextDate.day}-${nextDate.month}-${nextDate.year} and you missed it by ${ctr} days'
+    // else{
+    //     var [ctr,nextDate] = nextPalindromeBday;
+    //     outputBox.innerText='Next palindrome birthdate is ${nextDate.day}-${nextDate.month}-${nextDate.year} and you missed it by ${ctr} days'
     }
    
 }
@@ -173,4 +174,4 @@ var inputDate={
 
 
 
-  chkButton.addEventListener("click",final);
+  showBtn.addEventListener("click",final);
