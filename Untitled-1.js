@@ -270,7 +270,9 @@ var prevPalindromeBirthDate =prevPalindromeDate[1].day+"-"+prevPalindromeDate[1]
     result.innerText = "Yay it is a palindrome";
 
   }
-  else(result.innerText = "Next palindrome date is after " + nextPalindromeDate[0]+" days on " +nextPalindromeBirthDate +" or previous palindrome date is before "
+  else(
+    
+    result.innerText = "Next palindrome date is after " + nextPalindromeDate[0]+" days on " +nextPalindromeBirthDate +" or previous palindrome date is before "
   + prevPalindromeDate[0] + " days on " + prevPalindromeBirthDate
   )
 
