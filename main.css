@@ -41,3 +41,13 @@ p{
     border: 1px solid #0c4a6e ;
     border-radius: 1rem;
 }
+
+
+#resulter{
+    background-color: #ede9fe;
+    color: #0c4a6e;
+    border: 1px solid #0c4a6e ;
+    border-radius: 1rem;
+    text-align: center;
+    font-size: larger;
+}
